@@ -14,6 +14,10 @@ int main(void){
 
     printf("n = %llu, e = %llu, d = %llu\n", pbk.n, pbk.e, pvk.d);
 
+    unsigned long long int m = 12;   // número pequeno, MENOR que n
+    unsigned long long int c = criptar(m, pbk);
+    unsigned long long int volta = decriptar(c, pvk);
+    printf("m=%llu  cifrado=%llu  decifrado=%llu\n", m, c, volta);
 
     
     return 0;

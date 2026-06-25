@@ -28,5 +28,7 @@ Params genParams(unsigned long long int p, unsigned long long int q, unsigned lo
 unsigned long long int invmod(Params p);
 PublicKey genPubk(Params p);
 PrivKey genPrivk(Params p, PublicKey pk);
+unsigned long long int criptar(unsigned long long int base, PublicKey pub);
+unsigned long long int decriptar(unsigned long long int cifra, PrivKey priv);
 
 #endif

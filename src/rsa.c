@@ -65,4 +65,11 @@ PrivKey genPrivk(Params p, PublicKey pk){
     nova.d = invmod(p);
 
     return nova;
-};
+}
+unsigned long long int criptar(unsigned long long int base, PublicKey pub){
+    return expmod(base, pub.n, pub.e);
+}
+
+unsigned long long int decriptar(unsigned long long int cifra, PrivKey priv){
+    return expmod(cifra, priv.n, priv.d);
+}
