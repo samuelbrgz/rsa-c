@@ -3,9 +3,19 @@
 
 int main(void){
 
-    long long int teste = expmod(12, 391, 3);
-    long long int teste1 = invmod(352, 3);
-    printf("resultado: crip: %lld inv mod: %lld\n ", teste, teste1);
+    printf("Teste/n");
+    unsigned long long int p = 17;
+    unsigned long long int q = 23;
+    unsigned long long int e = 3;
+
+    Params pa = genParams(p, q, e);
+    PublicKey pbk = genPubk(pa);
+    PrivKey pvk = genPrivk(pa, pbk);
+
+    printf("n = %llu, e = %llu, d = %llu\n", pbk.n, pbk.e, pvk.d);
+
+
+    
     return 0;
     
 }

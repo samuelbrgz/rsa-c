@@ -3,28 +3,30 @@
 
 //tipos
 
-typedef struct PublicKey{
+typedef struct {
     unsigned long long int n;
     unsigned long long int e;
-}publicKey;
+}PublicKey;
 
-typedef struct PrivKey{
+typedef struct {
     unsigned long long int n;
     unsigned long long int d;
-}privKey;
+}PrivKey;
 
-typedef struct Parameters{
+typedef struct {
     unsigned long long int p;
     unsigned long long int q;
+    unsigned long long int e;
     unsigned long long int phi;
-} parameters;
+} Params;
 
 
 
 //funcs
 unsigned long long int expmod(unsigned long long int base, unsigned long long int n, unsigned long long int e);
-unsigned long long int invmod(unsigned long long int phi, unsigned long long int e);
-publicKey genpubk(unsigned long long int p, unsigned long long int q, unsigned long long int e);
-publicKey genprivk(unsigned long long int phi, unsigned long long int e);
+Params genParams(unsigned long long int p, unsigned long long int q, unsigned long long int e);
+unsigned long long int invmod(Params p);
+PublicKey genPubk(Params p);
+PrivKey genPrivk(Params p, PublicKey pk);
 
 #endif

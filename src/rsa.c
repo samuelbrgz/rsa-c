@@ -11,9 +11,9 @@ unsigned long long int expmod(unsigned long long int base, unsigned long long in
     return resultado;
 }
 
-unsigned long long int invmod(unsigned long long int phi, unsigned long long int e){
-    long long int r_ant = phi;
-    long long int r_atual = e;
+unsigned long long int invmod(Params p){
+    long long int r_ant = p.phi;
+    long long int r_atual = p.e;
     long long int t_ant = 0;
     long long int t_atual = 1;
 
@@ -32,16 +32,37 @@ unsigned long long int invmod(unsigned long long int phi, unsigned long long int
     };
 
     if(r_ant != 1){return 0;}
-    if(t_ant < 0){t_ant += phi;}
+    if(t_ant < 0){t_ant += p.phi;}
 
     return t_ant;
 
 }
 
-publicKey genpubk(unsigned long long int p, unsigned long long int q, unsigned long long int e){
-    publicKey nova;
-    nova.n = (p*q);
+Params genParams(unsigned long long int p, unsigned long long int q, unsigned long long int e){
+    Params nova;
+    
+    nova.p = p;
+    nova.q = q;
     nova.e = e;
+    nova.phi = (p-1)*(q-1);
 
     return nova;
 }
+
+PublicKey genPubk(Params p){
+    PublicKey nova;
+
+    nova.n = (p.p*p.q);
+    nova.e = p.e;
+
+    return nova;
+}
+
+PrivKey genPrivk(Params p, PublicKey pk){
+    PrivKey nova;
+
+    nova.n = pk.n;
+    nova.d = invmod(p);
+
+    return nova;
+};
