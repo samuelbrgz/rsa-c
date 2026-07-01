@@ -3,11 +3,25 @@
 #include "rsa.h"
 
 unsigned long long int expmod(unsigned long long int base, unsigned long long int n, unsigned long long int e){
+    
     unsigned long long int resultado = 1;
 
-    for(unsigned long long int i = 1; i <= e; i++){
-        resultado = ((resultado * base) % n );
+    if(base >= n){
+        base%=n;
     }
+
+    while(e > 0){
+        if(e & 1){
+            resultado = (resultado * base) % n;
+        }
+
+        e >>= 1;
+
+        if(e>0){
+            base =  (base * base) % n;
+        }
+    }
+
     return resultado;
 }
 
