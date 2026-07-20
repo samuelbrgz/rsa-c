@@ -38,15 +38,18 @@ unsigned long long int invmod(Params p){
 
 }
 
-Params genParams(unsigned long long int p, unsigned long long int q, unsigned long long int e){
-    Params nova;
-    
-    nova.p = p;
-    nova.q = q;
-    nova.e = e;
-    nova.phi = (p-1)*(q-1);
+void genParams(Params *pa){
 
-    return nova;
+    printf("Digite p: ");
+    scanf("%lld", &pa->p);
+
+    printf("Digite q: ");
+    scanf("%lld", &pa->q);
+
+    printf("Digite e: ");
+    scanf("%lld", &pa->e);
+
+    pa->phi = (pa->p-1)*(pa->q-1);
 }
 
 PublicKey genPubk(Params p){
@@ -72,4 +75,21 @@ unsigned long long int criptar(unsigned long long int base, PublicKey pub){
 
 unsigned long long int decriptar(unsigned long long int cifra, PrivKey priv){
     return expmod(cifra, priv.n, priv.d);
+}
+
+int cifrarTexto(char *msg, unsigned long long *cifra, PublicKey pub){
+    int i = 0;
+    while(msg[i] != '\0'){
+        cifra[i] = criptar((unsigned long long)msg[i], pub);
+        i++;
+    }
+    return i;
+}
+
+void decifrarTexto(unsigned long long *cifra, char *decifra, int tamanho, PrivKey priv){
+    int i = 0;
+    for(int i = 0; i < tamanho; i++){
+        decifra[i] = decriptar(cifra[i], priv);
+    }
+    decifra[i] = '\0';
 }
