@@ -101,9 +101,8 @@ int cifrarTexto(char *msg, unsigned long long *cifra, PublicKey pub){
 }
 
 void decifrarTexto(unsigned long long *cifra, char *decifra, int tamanho, PrivKey priv){
-    int i = 0;
     for(int i = 0; i < tamanho; i++){
         decifra[i] = decriptar(cifra[i], priv);
     }
-    decifra[i] = '\0';
+    decifra[tamanho] = '\0';
 }
