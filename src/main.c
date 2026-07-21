@@ -14,8 +14,8 @@ int main(void){
     Params params;
     genParams(&params);
 
-    PublicKey pub = genPubk(params);
-    PrivKey priv = genPrivk(params, pub);
+    PublicKey pbk = genPubk(params);
+    PrivKey pvk = genPrivk(params, pbk);
 
     char mensagem[100];
     printf("Digite o texto: ");

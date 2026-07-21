@@ -66,20 +66,20 @@ void genParams(Params *pa){
     pa->phi = (pa->p-1)*(pa->q-1);
 }
 
-PublicKey genPubk(Params p){
+PublicKey genPubk(Params *p){
     PublicKey nova;
 
-    nova.n = (p.p*p.q);
-    nova.e = p.e;
+    nova.n = (p->p*p->q);
+    nova.e = p->e;
 
     return nova;
 }
 
-PrivKey genPrivk(Params p, PublicKey pk){
+PrivKey genPrivk(Params *p, PublicKey *pk){
     PrivKey nova;
 
-    nova.n = pk.n;
-    nova.d = invmod(p);
+    nova.n = pk->n;
+    nova.d = invmod(*p);
 
     return nova;
 }
