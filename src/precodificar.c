@@ -9,7 +9,7 @@ int main(){
 
  
 
-    printf("\n================== Pre-codificacao ==================\n");
+    printf("\n╔═══════════════ PRE-CODIFICACAO ═══════════════╗\n");
     
     genParams(&prmts);
     PublicKey pbk = genPubk(&prmts);
@@ -17,9 +17,9 @@ int main(){
 
     if (pvk.d == 0)
     {
-        printf("\n[ERRO] expoente E (%lld) não possui inverso modular em relação a Phi (%lld)\n", prmts.e, prmts.phi);
-        printf("MDC(E, PHI) tem que ser igual a 1, tente outros valores.");
-        printf("\n=====================================================\n");
+        printf("\n[ERRO] expoente E (%lld) nao possui inverso modular em relacao a Phi (%lld)\n", prmts.e, prmts.phi);
+        printf("MDC(E, PHI) tem que ser igual a 1, tente outros valores.\n");
+        printf("=====================================================\n");
         return 1;
     }
 
@@ -41,7 +41,7 @@ int main(){
     
     fclose(arquivo);
     
-    printf("\nChaves geradas e salvas com sucesso em 'precodificacao.csv'!\n");
-    printf("\n=====================================================\n");
+    printf("\n[OK] Chaves geradas e salvas em 'precodificacao.csv'\n");
+    printf("╚═══════════════════════════════════════════════╝\n");
 
 }

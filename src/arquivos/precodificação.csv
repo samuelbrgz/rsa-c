@@ -1,7 +1,7 @@
 PARAMETRO ; VALOR
-P         ; 1009
-Q         ; 1013
-E         ; 17
-PHI       ; 1020096
-N (pub)   ; 1022117
-D (priv)  ; 180017
+P         ; 17
+Q         ; 23
+E         ; 3
+PHI       ; 352
+N (pub)   ; 391
+D (priv)  ; 235

@@ -19,7 +19,7 @@ int main(){
 
     FILE* arquivo = fopen("arquivos/precodificação.csv", "r");
     if(arquivo == NULL){
-        printf("falha ao abrir o arquivo!");
+        printf("falha ao abrir o arquivo!\n");
         return 1;
     }
     
@@ -39,8 +39,8 @@ int main(){
     fclose(arquivo);
 
     if (pvk.d == 0 || pvk.n == 0) {
-        printf("\n[ERRO CRITICO] Chave Publica incompleta ou corrompida no arquivo!\n");
-        printf("Certifique-se de que os parametros 'E' e 'N (pub)' existem e sao validos.\n");
+        printf("\n[ERRO CRITICO] Chave Privada incompleta ou corrompida no arquivo!\n");
+        printf("Certifique-se de que os parametros 'D (priv)' e 'N (pub)' existem e sao validos.\n");
         printf("Rode a pre-codificacao novamente.\n");
         return 1;
     }
@@ -64,29 +64,30 @@ int main(){
     fclose(arquivo);
     decifrarTexto(mensagem, msgdcf, tamanho_msg, pvk);
 
-    printf("\n=================== decodificacao ===================\n");
-    printf("\n[MENSAGEM CIFRADA]: \n");
+    printf("\n╔═══════════════ DECODIFICACAO ═════════════════╗\n");
+    printf("\n[MENSAGEM CIFRADA]:\n");
 
     for(int i = 0; i < tamanho_msg; i++){
         printf("%llu ", mensagem[i]);
     }
-    printf("\n[MENSAGEM DECIFRADA]: \n");
+    printf("\n[MENSAGEM DECIFRADA]:\n");
 
     for(int i = 0; i < tamanho_msg; i++){
         printf("%d ", msgdcf[i]);
     }
-    printf("\n=\n");
+    printf("\n[TEXTO]:\n");
     printf("%s\n", msgdcf);
 
     if (strncmp(msgorig, msgdcf, MSG) == 0) {
-        printf("SUCESSO ABSOLUTO! A mensagem decifrada e identica a original.\n");
+        printf("\n[OK] SUCESSO! A mensagem decifrada e identica a original.\n");
+
     } else {
         printf("ALERTA! As mensagens estao diferentes.\n");
         printf("Original:  \"%s\"\n", msgorig);
         printf("Decifrada: \"%s\"\n", msgdcf);
     }
     
-    printf("\n=====================================================\n");
+    printf("╚═══════════════════════════════════════════════╝\n");
 
     arquivo = fopen("arquivos/decodificação.csv", "w");
     fprintf(arquivo, "==== Mensagem Decifrada (string) ====\n");

@@ -41,7 +41,7 @@ int main(){
         return 1;
     }
 
-    printf("\n==================== codificacao ====================\n");
+    printf("\n╔════════════════ CODIFICACAO ══════════════════╗\n");
     printf("Qual mensagem deseja cifrar?\n");
     if (fgets(mensagem, sizeof(mensagem), stdin) != NULL){
         mensagem[strcspn(mensagem, "\n")] = 0;
@@ -49,12 +49,12 @@ int main(){
 
     int tamanho = cifrarTexto(mensagem, cifra, pbk);
 
-    printf("\n[MENSAGEM CIFRADA]: \n");
+    printf("\n[MENSAGEM CIFRADA]\n");
 
     for(int i = 0; i < tamanho; i++){
         printf("%llu ", cifra[i]);
     }
-    printf("\n=====================================================\n");
+    printf("\n╚═══════════════════════════════════════════════╝\n");
 
     arquivo = fopen("arquivos/codificação.csv", "w");
     fprintf(arquivo, "==== Mensagem Original ====\n");
